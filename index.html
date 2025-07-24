@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atul Dagur - Professional Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2a4365;
+            --secondary: #4299e1;
+            --accent: #ed8936;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --gray: #e2e8f0;
+            --text: #2d3748;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        a{
+            text-decoration: none;
+            color: unset;
+        }
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .resume-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+        
+        .resume-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .resume-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .resume-body {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+        
+        .objective {
+            background-color: var(--gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .skill-category {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-category h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .skill-list {
+            list-style-type: none;
+        }
+        
+        .skill-list li {
+            padding: 0.3rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        
+        .skill-list li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .project-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+        }
+        
+        .project-content {
+            padding: 1.2rem;
+        }
+        
+        .project-tech {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+        
+        .project-tech span {
+            background-color: var(--gray);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+        
+        .education-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .education-timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -2.45rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 3px solid white;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.3rem;
+        }
+        
+        .timeline-institution {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .achievements-list {
+            list-style-type: none;
+        }
+        
+        .achievements-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .achievements-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .interests-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .interest-tag {
+            background-color: var(--gray);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .interest-tag i {
+            color: var(--accent);
+        }
+        
+        .entrepreneur-section {
+            background-color: var(--gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .entrepreneur-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--gray);
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .resume-header {
+                padding: 1.5rem;
+            }
+            
+            .resume-title {
+                font-size: 2rem;
+            }
+            
+            .resume-body {
+                padding: 1.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="resume-header">
+            <div class="header-content">
+                <h1 class="resume-title">Atul Dagur</h1>
+                <p class="tagline">"Code. Build. Impact."</p>
+                <p>Software Developer | Innovator | Tech Entrepreneur</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kota, Rajasthan, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 7906667246</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span><a href="mailto:atuldagur2009@gmail.com">atuldagur2009@gmail.com</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span><a href="https://github.com/10mincode">10mincode</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resume-body">
+            <div class="section">
+                <h2 class="section-title">Objective</h2>
+                <div class="objective">
+                    Innovative and self-driven software developer with 5+ years of hands-on coding experience. Skilled in building impactful apps, games, and web tools with clean, scalable code. Passionate about creating products that simplify life and bring value to real users.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Technical Skills</h2>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Languages</h4>
+                        <ul class="skill-list">
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>JavaScript</li>
+                            <li>TypeScript</li>
+                            <li>C# (Unity)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Web Development</h4>
+                        <ul class="skill-list">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Angular</li>
+                            <li>React</li>
+                            <li>Firebase</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>App Development</h4>
+                        <ul class="skill-list">
+                            <li>Android Studio (Java)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Game Development</h4>
+                        <ul class="skill-list">
+                            <li>Unity (C#)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Tools</h4>
+                        <ul class="skill-list">
+                            <li>Git</li>
+                            <li>VSCode</li>
+                            <li>Postman</li>
+                            <li>Many More..</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Core Concepts</h4>
+                        <ul class="skill-list">
+                            <li>Data Structures & Algorithms</li>
+                            <li>OOPS</li>
+                            <li>Machine Learning (basic)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Entrepreneurial Experience</h2>
+                
+                <div class="entrepreneur-section">
+                    <div class="entrepreneur-title">
+                        <i class="fas fa-rocket"></i>
+                        <span>SRYMAK EDU SERVICES PRIVATE LIMITED</span>
+                    </div>
+                    <p><strong>Founder & Full-Stack Developer</strong> | 2021-2023</p>
+                    <p>Founded and operated an innovative online face-to-face coaching platform serving students across India for competitive exams like RMS and Sainik School CET.</p>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                        <li>Developed the complete backend systems using modern web technologies</li>
+                        <li>Designed and implemented the platform's functionality and scalability</li>
+                        <li>Created and delivered educational content for Reasoning subjects</li>
+                        <li>Managed the entire operation from technical infrastructure to teaching</li>
+                    </ul>
+                    <p style="margin-top: 0.5rem; font-style: italic;">Currently paused to focus on JEE preparation, but the entrepreneurial experience remains invaluable.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Featured Projects</h2>
+                
+                <div class="projects-grid">
+                    <a href="https://10mincode.itch.io/reflex-fury">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Reflex-Fury</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Fast-paced game designed to test and improve user reaction time and focus.</p>
+                            <div class="project-tech">
+                                <span>Unity</span>
+                                <span>C#</span>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    <a href="https://primequotes.netlify.app">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>PrimeQuotes</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Web application displaying motivational quotes with clean UI and share functionality.</p>
+                            <div class="project-tech">
+                                <span>Web</span>
+                                <span>Netlify</span>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    <a href="https://vibemyname.netlify.app">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>VibeMyName</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Creative web tool that randomly expands names into unique words.</p>
+                            <div class="project-tech">
+                                <span>Web</span>
+                                <span>Netlify</span>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    <a href="https://github.com/10mincode/Subway-Surfers-Body-Gestures/releases/tag/subwaysurferplayer">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Subway Surfer Gesture Control</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Game controlled using body gestures via computer vision technology.</p>
+                            <div class="project-tech">
+                                <span>OpenCV</span>
+                                <span>Unity</span>
+                                <span>C#</span>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="education-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025-26</div>
+                        <div class="timeline-institution">Bansal Classes Kota</div>
+                        <div class="timeline-details">A-STAR Batch | JEE Advanced Preparation</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2024-25</div>
+                        <div class="timeline-institution">Allen Kota</div>
+                        <div class="timeline-details">CMAS Batch</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Achievements</h2>
+                
+                <ul class="achievements-list">
+                    <li>Started programming at age 10 (class 5th)</li>
+                    <li>Built multiple apps and games before class 12th</li>
+                    <li>Self-taught Unity, Android app development, and advanced web frameworks</li>
+                    <li>Cleared RMS (Rashtriya Military School) CET Entrance Exams: Class 6th entrance while in class 4th, and Class 9th entrance while in class 5th</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Interests</h2>
+                
+                <div class="interests-container">
+                    <div class="interest-tag">
+                        <i class="fas fa-code"></i>
+                        <span>Competitive Programming</span>
+                    </div>
+                    <div class="interest-tag">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Game Development</span>
+                    </div>
+                    <div class="interest-tag">
+                        <i class="fas fa-rocket"></i>
+                        <span>Viral App Creation</span>
+                    </div>
+                    <div class="interest-tag">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>New Technologies</span>
+                    </div>
+                    <div class="interest-tag">
+                        <i class="fas fa-tools"></i>
+                        <span>Utility Tools</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Atul Dagur | Software Developer</p>
+            <p>Portfolio: <a href="https://atuldagur.netlify.app">Click to go</a> | GitHub: 10mincode</p>
+        </div>
+    </div>
+</body>
+</html>
